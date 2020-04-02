@@ -1,0 +1,7 @@
+com/cognizant/demo/model/Book.class
+com/cognizant/demo/exception/BookNotFoundException.class
+com/cognizant/demo/exception/CustomGlobalExceptionHandler.class
+com/cognizant/demo/controller/BookController.class
+com/cognizant/demo/exception/BookUnSupportedFieldPatchException.class
+com/cognizant/demo/StartBookApplication.class
+com/cognizant/demo/BookRepository.class
