@@ -17,10 +17,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Deploy') {
+        stage('Docker Services Image Build') {
             steps {
                 echo 'Deploying....'
+                sh 'docker build .'
             }
         }
+
     }
 }
