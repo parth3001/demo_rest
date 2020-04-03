@@ -27,13 +27,13 @@ pipeline {
 
             steps {
                 echo 'Docker build....'
-                sh 'docker build -t ppatel21/spring-rest-hello-world:${currentBuildNumber} . '
+                sh '/usr/local/bin/docker build -t ppatel21/spring-rest-hello-world:${currentBuildNumber} . '
             }
         }
         stage('Docker image push to repo'){
         	steps{
         		echo 'Docker Image push...'
-        		sh ''
+        		sh '/usr/local/bin/docker push ppatel21/spring-rest-hello-world:${currentBuildNumber}'
         	}
         }
 
