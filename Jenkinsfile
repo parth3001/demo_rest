@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Docker build....'
                 sh 'chmod 755 Dockerbuild.sh'
-                sh './Dockerbuild.sh'
+                sh '/usr/local/bin/docker build .'
             }
         }
 
