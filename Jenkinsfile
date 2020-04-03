@@ -1,5 +1,11 @@
 pipeline {
     agent any
+	parameters {
+            booleanParam (
+                defaultValue: false,
+                description: 'Select only when you want to do full build Push',
+                name : 'FUll_BUILD')
+        }
 	environment {
 		currentBuildNumber = "${env.BUILD_NUMBER}"
 	}
@@ -12,19 +18,33 @@ pipeline {
      }
     stages {
         stage('Build') {
+        when {
+                        expression {
+                            return  params.FUll_BUILD
+                        }
+        }
             steps {
                 echo 'Building..'
                 sh 'mvn package'
             }
         }
         stage('Test') {
+         when {
+                                expression {
+                                    return  params.FUll_BUILD
+                                }
+           }
             steps {
                 echo 'Testing..'
                 sh 'mvn test'
             }
         }
         stage('Docker Services Image Build') {
-
+		when {
+                                        expression {
+                                            return  params.FUll_BUILD
+                                        }
+          }
             steps {
                 echo 'Docker build....'
                 sh '/usr/local/bin/docker build -t ppatel21/spring-rest-hello-world:${currentBuildNumber} . '
@@ -34,6 +54,7 @@ pipeline {
         	steps{
         	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'user', passwordVariable: 'pass']]) {
         		sh '''
+        		echo ${user}
         		/usr/local/bin/docker login --username=${user} --password=${pass}
         		/usr/local/bin/docker push ppatel21/spring-rest-hello-world:${currentBuildNumber}
         		'''
