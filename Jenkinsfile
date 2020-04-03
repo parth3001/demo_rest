@@ -1,6 +1,6 @@
 pipeline {
     agent any
-	currentBuildNumber = env.BUILD_NUMBER
+	currentBuildNumber = ${env.BUILD_NUMBER}
 
 	tools {
             maven 'Maven 3.6.3'
