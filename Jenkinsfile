@@ -34,7 +34,7 @@ pipeline {
         	steps{
         	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'user', passwordVariable: 'pass']]) {
         		sh '''
-        		/usr/local/bin/docker login --username ${user} --password ${pass}
+        		/usr/local/bin/docker login --username=${user} --password=${pass}
         		/usr/local/bin/docker push ppatel21/spring-rest-hello-world:${currentBuildNumber}
         		'''
         		}
