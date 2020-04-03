@@ -21,7 +21,7 @@ pipeline {
         stage('Docker Services Image Build') {
             steps {
                 echo 'Deploying....'
-                sh 'docker build .'
+                sh './Dockerbuild.sh'
             }
         }
 
