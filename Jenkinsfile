@@ -20,7 +20,8 @@ pipeline {
         }
         stage('Docker Services Image Build') {
             steps {
-                echo 'Deploying....'
+                echo 'Docker build....'
+                sh 'chmod 755 Dockerbuild.sh'
                 sh './Dockerbuild.sh'
             }
         }
