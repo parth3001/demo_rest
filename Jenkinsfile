@@ -52,9 +52,9 @@ pipeline {
         }
         stage('Docker image push to repo'){
         	steps{
-        	withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'user', passwordVariable: 'pass')]) {
-        		sh 'echo $user'
-        		sh  '/usr/local/bin/docker login --username=$user --password=$pass'
+        	withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+        		sh 'echo $USER'
+        		sh  '/usr/local/bin/docker login --username=$USER --password=$PASS'
         		sh '/usr/local/bin/docker push ppatel21/spring-rest-hello-world:${currentBuildNumber}'
         		}
         	}
