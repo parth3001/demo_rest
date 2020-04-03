@@ -52,7 +52,7 @@ pipeline {
         }
         stage('Docker image push to repo'){
         	steps{
-        	withCredentials([[$class: 'usernamePassword', credentialsId: 'dockerhub', usernameVariable: 'user', passwordVariable: 'pass']]) {
+        	withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'user', passwordVariable: 'pass')]) {
         		sh '''
         		echo ${user}
         		/usr/local/bin/docker login --username=${user} --password=${pass}
