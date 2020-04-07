@@ -14,21 +14,20 @@ pipeline {
 
     stages {
         stage('Full Deploy') {
-        when {
-                        expression {
-                            return  params.FUll_Deployment
-                        }
-        }
-            steps {
+        steps {
 
 				sh '/usr/local/bin/kubectl apply -f kube_deployment.yaml '
 
             }
         }
         stage('Test') {
+        serviceClusteIP = sh(
+            script: "/usr/local/bin/kubectl describe service books-service | grep IP | awk '{print $2}'",
+            returnStdout: true,
+          )
             steps {
                 echo 'Testing..'
-				sh 'mvn -f functionalTest/pom.xml test '
+				sh 'mvn -f functionalTest/pom.xml test -Dserver.basehost=http://${serviceClusterIP}'
             }
         }
      }
