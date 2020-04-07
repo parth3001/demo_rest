@@ -73,11 +73,18 @@ class FuntionalTest {
 
 		//Define the specification of request. Server is specified by baseURI above.
 		RequestSpecification httpRequest = RestAssured.given();
+		JSONObject updateData = new JSONObject();
+		updateData.put("name", "Book for Everything");
 
-		when().
-				get("/books?id=1").
-				then().
-				statusCode(200).assertThat()
-				.body("data.name", equalTo("Guide"));
+		httpRequest.header("Content-Type", "application/json");
+
+		httpRequest.body(updateData.toJSONString());
+		Response response = httpRequest.request(Method.PUT, "4");
+		statusCode = response.getStatusCode();
+		Assert.assertEquals(statusCode, 200);
+
+		JsonPath newData = response.jsonPath();
+		String name = newData.get("name");
+		Assert.assertEquals(name, "Everything");
 	}
 }
