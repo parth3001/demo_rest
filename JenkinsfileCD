@@ -36,7 +36,7 @@ pipeline {
         }
             steps {
                 echo 'Building..'
-                sh '... Deploying Full... '
+
             }
         }
     	stage('Delta Deploy') {
@@ -47,13 +47,13 @@ pipeline {
            }
             steps {
                 echo 'Testing..'
-                sh '... Deploying Delta... '
+
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'echo Testing Deploy'
+
             }
         }
      }
