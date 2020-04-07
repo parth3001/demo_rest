@@ -46,45 +46,5 @@ class FuntionalTest {
 	}
 
 
-	@Test
-	void validateDataOnResponse() {
 
-		//The base URI to be used
-		String port = System.getProperty("server.port");
-		if (port == null) {
-			RestAssured.port = Integer.valueOf(9090);
-		}
-		else{
-			RestAssured.port = Integer.valueOf(port);
-		}
-
-		String basePath = System.getProperty("server.base");
-		if(basePath==null){
-			basePath = "/book/";
-		}
-		RestAssured.basePath = basePath;
-
-		String baseHost = System.getProperty("server.host");
-		if(baseHost==null){
-			baseHost = "http://10.106.210.84";
-		}
-		RestAssured.baseURI = baseHost;
-
-
-		//Define the specification of request. Server is specified by baseURI above.
-		RequestSpecification httpRequest = RestAssured.given();
-		JSONObject updateData = new JSONObject();
-		updateData.put("name", "Book for Everything");
-
-		httpRequest.header("Content-Type", "application/json");
-
-		httpRequest.body(updateData.toJSONString());
-		Response response = httpRequest.request(Method.PUT, "4");
-		statusCode = response.getStatusCode();
-		Assert.assertEquals(statusCode, 200);
-
-		JsonPath newData = response.jsonPath();
-		String name = newData.get("name");
-		Assert.assertEquals(name, "Everything");
-	}
 }
