@@ -20,7 +20,7 @@ pipeline {
         stage('Full Deploy') {
         when {
                         expression {
-                            return  params.FUll_BUILD
+                            return  params.FUll_Deployment
                         }
         }
             steps {
@@ -31,7 +31,7 @@ pipeline {
         stage('Delta Deploy') {
          when {
                                 expression {
-                                    isDelta = !(params.FUll_BUILD)
+                                    isDelta = !(params.FUll_Deployment)
                                     return  isDelta
                                 }
            }
@@ -43,7 +43,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                               sh '...Testing Deploy... '
+                sh '...Testing Deploy... '
             }
         }
      }
