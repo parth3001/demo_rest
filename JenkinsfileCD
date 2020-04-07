@@ -35,8 +35,12 @@ pipeline {
                         }
         }
             steps {
+             withKubeCredentials([
+                    [credentialsId: 'jenkins-robot', serverUrl: 'http://127.0.0.1:54520'],
+                   ]
+                ])
                 echo 'Building..'
-				sh 'kubectl create -f kube_deployment.yaml'
+				sh 'kubectl config view'
             }
         }
     	stage('Delta Deploy') {
