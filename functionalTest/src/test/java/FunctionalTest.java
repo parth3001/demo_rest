@@ -48,6 +48,32 @@ class FuntionalTest {
 
 	@Test
 	void validateDataOnResponse() {
+
+		//The base URI to be used
+		String port = System.getProperty("server.port");
+		if (port == null) {
+			RestAssured.port = Integer.valueOf(9090);
+		}
+		else{
+			RestAssured.port = Integer.valueOf(port);
+		}
+
+		String basePath = System.getProperty("server.base");
+		if(basePath==null){
+			basePath = "/book/";
+		}
+		RestAssured.basePath = basePath;
+
+		String baseHost = System.getProperty("server.host");
+		if(baseHost==null){
+			baseHost = "http://10.106.210.84";
+		}
+		RestAssured.baseURI = baseHost;
+
+
+		//Define the specification of request. Server is specified by baseURI above.
+		RequestSpecification httpRequest = RestAssured.given();
+
 		when().
 				get("/books?id=1").
 				then().
