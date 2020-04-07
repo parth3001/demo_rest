@@ -34,7 +34,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-
+				sh 'cd functionalTest'
+				sh 'mvn test'
 
             }
         }
