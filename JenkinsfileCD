@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Test') {
         serviceClusteIP = sh(
-            script: "/usr/local/bin/kubectl describe service books-service | grep IP | awk '{print $2}'",
+            script: '''/usr/local/bin/kubectl describe service books-service | grep IP | awk '{print $2}' ''',
             returnStdout: true,
           )
             steps {
