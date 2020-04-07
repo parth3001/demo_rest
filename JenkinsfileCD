@@ -36,18 +36,7 @@ pipeline {
         }
             steps {
 
-				sh '/usr/local/bin/kubectl create -f kube_deployment.yaml '
-
-            }
-        }
-    	stage('Delta Deploy') {
-         when {
-                                expression {
-                                	skipdelta()
-                                }
-           }
-            steps {
-                echo 'Delta Deploy..'
+				sh '/usr/local/bin/kubectl apply -f kube_deployment.yaml '
 
             }
         }
