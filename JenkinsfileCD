@@ -4,8 +4,6 @@ def skipdelta(){
 			isDelta == true
 
 		}
-
-		return isDelta
 	}
 
 pipeline {
@@ -16,6 +14,7 @@ pipeline {
                 description: 'Select only when you want to do full Deployment',
                 name : 'FUll_Deployment')
         }
+    def isDelta = false
 	environment {
 		currentBuildNumber = "${env.BUILD_NUMBER}"
 	}
