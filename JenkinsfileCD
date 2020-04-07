@@ -1,10 +1,15 @@
+def isDelta = false
+
+
 def skipdelta(){
-		def isDelta = false
+
 		if(params.FUll_Deployment == false){
 			isDelta == true
 
 		}
 	}
+
+
 
 pipeline {
     agent any
