@@ -1,9 +1,11 @@
 def skipdelta(){
-
+		isDelta == false
 		if(params.FUll_Deployment == false){
 			isDelta == true
 
 		}
+
+		return isDelta
 	}
 
 
@@ -39,11 +41,9 @@ pipeline {
             }
         }
     	stage('Delta Deploy') {
-         def isDelta = false
          when {
                                 expression {
                                 	skipdelta()
-                                    return  isDelta
                                 }
            }
             steps {
