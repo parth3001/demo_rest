@@ -1,9 +1,11 @@
 def skipdelta(){
+
 		if(params.FUll_Deployment == false){
 			isDelta == true
+
 		}
 
-
+		return isDelta
 	}
 
 pipeline {
