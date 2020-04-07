@@ -46,7 +46,7 @@ pipeline {
                                 }
            }
             steps {
-                echo 'Testing..'
+                echo 'Delta Deploy..'
 
             }
         }
