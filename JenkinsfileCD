@@ -1,5 +1,4 @@
-def skipdelta(){
-		isDelta == false
+def skipdelta(def isDelta=false){
 		if(params.FUll_Deployment == false){
 			isDelta == true
 
