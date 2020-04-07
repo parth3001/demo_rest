@@ -10,6 +10,14 @@ pipeline {
 		currentBuildNumber = "${env.BUILD_NUMBER}"
 	}
 
+	def skipdelta(){
+		if(params.FUll_Deployment == false){
+			isDelta == true
+		}
+
+
+	}
+
 
 	tools {
             maven 'Maven 3.6.3'
@@ -31,7 +39,6 @@ pipeline {
         stage('Delta Deploy') {
          when {
                                 expression {
-                                    isDelta = !(params.FUll_Deployment)
                                     return  isDelta
                                 }
            }
