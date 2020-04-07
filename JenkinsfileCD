@@ -36,8 +36,7 @@ pipeline {
         }
             steps {
              withKubeCredentials([
-                    [credentialsId: 'jenkins-robot', serverUrl: 'http://127.0.0.1:54520'],
-                   ]
+                    [credentialsId: 'jenkins-robot', serverUrl: 'http://127.0.0.1:54520']
                 ])
                 echo 'Building..'
 				sh 'kubectl config view'
