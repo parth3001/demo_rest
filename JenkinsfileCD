@@ -35,9 +35,9 @@ pipeline {
                         }
         }
             steps {
-                withKubeConfig([credentialsId: 'jenkins-robot', serverUrl: 'http://127.0.0.1:54520' ]){
-				sh '/usr/local/bin/kubectl get pods'
-				}
+
+				sh '/usr/local/bin/kubectl create -f kube_deployment.yaml '
+
             }
         }
     	stage('Delta Deploy') {
