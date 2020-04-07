@@ -38,6 +38,7 @@ pipeline {
         stage('Delta Deploy') {
          when {
                                 expression {
+                                	skipdelta()
                                     return  isDelta
                                 }
            }
