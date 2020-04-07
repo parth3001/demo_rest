@@ -43,7 +43,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-
+                sh 'IP=`/usr/local/bin/kubectl describe service books-service | grep IP | awk '{print $2}'`'
+                sh 'curl http://${IP}:9090/books'
             }
         }
      }
