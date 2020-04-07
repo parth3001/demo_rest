@@ -36,7 +36,7 @@ pipeline {
         }
             steps {
                 withKubeConfig([credentialsId: 'jenkins-robot', serverUrl: 'http://127.0.0.1:54520' ]){
-				sh 'kubectl config view'
+				sh '/usr/local/bin/kubectl get pods'
 				}
             }
         }
