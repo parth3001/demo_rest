@@ -1,7 +1,7 @@
 def skipdelta(def isDelta=false){
-		if(params.FUll_Deployment == false){
-			isDelta == true
 
+		if(params.FUll_Deployment == false){
+			isDelta=true
 		}
 
 		return isDelta
@@ -53,7 +53,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh '...Testing Deploy... '
+                sh 'echo Testing Deploy'
             }
         }
      }
