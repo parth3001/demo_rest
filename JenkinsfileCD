@@ -1,22 +1,5 @@
-def skipdelta(def isDelta=false){
-
-		if(params.FUll_Deployment == false){
-			isDelta=true
-		}
-
-		return isDelta
-	}
-
-
-
 pipeline {
     agent any
-	parameters {
-            booleanParam (
-                defaultValue: false,
-                description: 'Select only when you want to do full Deployment',
-                name : 'FUll_Deployment')
-        }
 
 	environment {
 		currentBuildNumber = "${env.BUILD_NUMBER}"
