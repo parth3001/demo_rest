@@ -28,7 +28,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-				sh 'mvn -f functionalTest/pom.xml test'
+                sh
+				sh 'mvn -f functionalTest/pom.xml test '
             }
         }
      }

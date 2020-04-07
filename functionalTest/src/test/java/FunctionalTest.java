@@ -44,4 +44,14 @@ class FuntionalTest {
 		int statusCode = response.getStatusCode();
 		Assert.assertEquals(statusCode, 200);
 	}
+
+
+	@Test
+	void validateDataOnResponse() {
+		when().
+				get("/books?id=1").
+				then().
+				statusCode(200).assertThat()
+				.body("data.name", equalTo("Guide"));
+	}
 }
