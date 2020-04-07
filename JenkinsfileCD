@@ -21,13 +21,12 @@ pipeline {
             }
         }
         stage('Test') {
-        serviceClusteIP = sh(
-            script: '''/usr/local/bin/kubectl describe service books-service | grep IP | awk '{print $2}' ''',
-            returnStdout: true,
-          )
             steps {
                 echo 'Testing..'
-				sh 'mvn -f functionalTest/pom.xml test -Dserver.basehost=http://${serviceClusterIP}'
+				sh '''
+				serviceClusterIP=`/usr/local/bin/kubectl describe service books-service | grep IP | awk '{print $2}'`
+				mvn -f functionalTest/pom.xml test -Dserver.basehost=http://${serviceClusterIP}
+				'''
             }
         }
      }
