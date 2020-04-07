@@ -1,3 +1,11 @@
+def skipdelta(){
+		if(params.FUll_Deployment == false){
+			isDelta == true
+		}
+
+
+	}
+
 pipeline {
     agent any
 	parameters {
@@ -9,15 +17,6 @@ pipeline {
 	environment {
 		currentBuildNumber = "${env.BUILD_NUMBER}"
 	}
-
-	def skipdelta(){
-		if(params.FUll_Deployment == false){
-			isDelta == true
-		}
-
-
-	}
-
 
 	tools {
             maven 'Maven 3.6.3'
