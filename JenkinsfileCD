@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+	parameters {
+            booleanParam (
+                defaultValue: false,
+                description: 'Select only when you want to do full Deployment',
+                name : 'FUll_Deployment')
+        }
+	environment {
+		currentBuildNumber = "${env.BUILD_NUMBER}"
+	}
+
+
+	tools {
+            maven 'Maven 3.6.3'
+            jdk 'jdk8'
+
+     }
+    stages {
+        stage('Full Deploy') {
+        when {
+                        expression {
+                            return  params.FUll_BUILD
+                        }
+        }
+            steps {
+                echo 'Building..'
+                sh '... Deploying Full... '
+            }
+        }
+        stage('Delta Deploy') {
+         when {
+                                expression {
+                                    isDelta = !(params.FUll_BUILD)
+                                    return  isDelta
+                                }
+           }
+            steps {
+                echo 'Testing..'
+                sh '... Deploying Delta... '
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                               sh '...Testing Deploy... '
+            }
+        }
+     }
+}
