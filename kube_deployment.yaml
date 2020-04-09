@@ -38,6 +38,6 @@ spec:
     spec:
       containers:
         - name: services-backend
-          image: ppatel21/spring-rest-hello-world:42
+          image: ppatel21/spring-rest-hello-world:48
           ports:
             - containerPort: 8080
