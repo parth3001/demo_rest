@@ -90,7 +90,7 @@
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.6</version>
 				<configuration>
-					<workingDirectory>frontend</workingDirectory>
+					<workingDirectory>ui</workingDirectory>
 					<installDirectory>target</installDirectory>
 				</configuration>
 				<executions>
@@ -134,7 +134,7 @@
 						<configuration>
 							<target>
 								<copy todir="${project.build.directory}/classes/public">
-									<fileset dir="${project.basedir}/employee-ui/build"/>
+									<fileset dir="${project.basedir}/ui/build"/>
 								</copy>
 							</target>
 						</configuration>
