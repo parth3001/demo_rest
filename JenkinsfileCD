@@ -13,7 +13,7 @@ pipeline {
 
 
     stages {
-        stage('Code, Configuration and Infra. Deploy') {
+        stage('Code, Config. & Infra. Deploy') {
         steps {
 
 				sh '/usr/local/bin/kubectl apply -f kube_deployment.yaml '
