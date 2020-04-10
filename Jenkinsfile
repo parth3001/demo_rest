@@ -17,7 +17,7 @@ pipeline {
 
      }
     stages {
-        stage('Build') {
+        stage('Code compile and packaging build') {
         when {
                         expression {
                             return  params.FUll_BUILD
@@ -39,7 +39,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Docker Services Image Build') {
+        stage('Docker image build') {
 		when {
                                         expression {
                                             return  params.FUll_BUILD

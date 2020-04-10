@@ -13,14 +13,14 @@ pipeline {
 
 
     stages {
-        stage('Full Deploy') {
+        stage('Code, Configuration and Infra. Deploy') {
         steps {
 
 				sh '/usr/local/bin/kubectl apply -f kube_deployment.yaml '
 
             }
         }
-        stage('Functional Tests') {
+        stage('Functional tests') {
             steps {
                 echo 'Functional Testing..'
 				sh '''
