@@ -17,7 +17,7 @@ pipeline {
 
      }
     stages {
-        stage('Code compile and packaging build') {
+        stage('Code compile and package build') {
         when {
                         expression {
                             return  params.FUll_BUILD
