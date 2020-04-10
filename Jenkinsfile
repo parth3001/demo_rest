@@ -28,7 +28,7 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Test') {
+        stage('Unit testing') {
          when {
                                 expression {
                                     return  params.FUll_BUILD
