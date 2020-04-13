@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn -Dmaven.test.skip=true package'
             }
         }
-        stage('SonarQube Analysis') {
+        stage('CodeQuality Analysis with Sonar') {
         	steps{
                   withSonarQubeEnv(installationName: 'Sonar_Qube') { // You can override the credential to be used
                        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
