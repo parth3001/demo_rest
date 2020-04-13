@@ -1,11 +1,5 @@
 pipeline {
     agent any
-	parameters {
-            booleanParam (
-                defaultValue: false,
-                description: 'Select only when you want to do full build Push',
-                name : 'FUll_BUILD')
-        }
 	environment {
 		currentBuildNumber = "${env.BUILD_NUMBER}"
 	}
@@ -17,34 +11,26 @@ pipeline {
 
      }
     stages {
-        stage('Build') {
-        when {
-                        expression {
-                            return  params.FUll_BUILD
-                        }
-        }
+        stage('Code compile and package build') {
             steps {
                 echo 'Building..'
-                sh 'mvn package'
+                sh 'mvn -Dmaven.test.skip=true package'
             }
         }
-        stage('Test') {
-         when {
-                                expression {
-                                    return  params.FUll_BUILD
-                                }
-           }
+        stage('CodeQuality Analysis with Sonar') {
+        	steps{
+                  withSonarQubeEnv(installationName: 'Sonar_Qube') { // You can override the credential to be used
+                       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
+                     }
+                 }
+         }
+        stage('Unit testing') {
             steps {
                 echo 'Testing..'
                 sh 'mvn test'
             }
         }
-        stage('Docker Services Image Build') {
-		when {
-                                        expression {
-                                            return  params.FUll_BUILD
-                                        }
-          }
+        stage('Docker image build') {
             steps {
                 echo 'Docker build....'
                 sh '/usr/local/bin/docker build -t ppatel21/spring-rest-hello-world:${currentBuildNumber} . '
