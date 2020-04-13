@@ -20,7 +20,7 @@ pipeline {
 
             }
         }
-        stage('Functional tests') {
+        stage('Functional tests execution') {
             steps {
                 echo 'Functional Testing..'
 				sh '''
