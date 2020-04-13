@@ -51,7 +51,7 @@ pipeline {
         stage('Unit testing') {
             steps {
                 echo 'Testing..'
-                sh 'mvn test'
+                sh 'mvn test -f'
             } //steps
         } // stage
         stage('Docker image build') {
